@@ -7,18 +7,18 @@ angular.module('chatroom').controller('mainCtrl', function($scope, messageServic
 
   $scope.getMessage = function() {
     messageService.getMessage().then(function (response) {
-       $scope.message = response.data;
-      console.log(response);
+       $scope.messages = response.data;
+       console.log(response);
     })
   }
-$scope.getMessage();
+ $scope.getMessage();
 
   //The postMessage function will take whatever the user typed in (hint: look at the html and see what ng-model correlates to on the input box),
   //pass that text to the postMessage method on the messageService object which will then post it to the backend.
 
-$scope.postMessage = function () {
+$scope.postMessage = function (message) {
   messageService.postMessage(message).then(function (response) {
-
+    $scope.message = ''; 
   })
 }
 
@@ -26,6 +26,6 @@ $scope.postMessage = function () {
   //uncomment this code when your getMessages function is finished
   //This goes and gets new data every second, which mimicking a chat room experience.
   setInterval(function(){
-    $scope.getMessages();
+    $scope.getMessage();
   }, 1500)
 })

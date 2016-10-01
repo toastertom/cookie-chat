@@ -13,11 +13,11 @@ angular.module('chatroom').service('messageService', function($http){
 
   //postMessage method here
 
-this.postMessage = function () {
+this.postMessage = function (message) {
   return $http({
     method: 'POST',
     url: 'http://practiceapi.devmounta.in/api/chats',
-    data: {message: yourMessage}
+    data: {message: message}
   })
 }
 
